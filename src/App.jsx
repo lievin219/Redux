@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-    <div>
+    <div className='bg-white text-blue-600'>
    
        <Profiling/>
        <Logging/>

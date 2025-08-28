@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Logging } from './Components/Logging'
 import { Profiling } from './Components/Profiling'
+import { Exercise } from './Components/Exercise'
 
 import './App.css'
 
@@ -13,6 +14,7 @@ function App() {
    
        <Profiling/>
        <Logging/>
+       <Exercise/>
       </div>
     
     </>

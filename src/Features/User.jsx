@@ -16,4 +16,5 @@ const initialStateValue={name:"",email:"",age:0}
         }
     }
  })
+
  export const {login,logout}=userSlice.actions

@@ -1,7 +1,11 @@
 import React from 'react'
 
-export const Todoing = () => {
+export const Todoing = ({todo}) => {
   return (
-    <div>Todoing</div>
+    <div>
+        <span className={todo.completed?'line-through text-gray-400':''}>{todo.name}</span>
+    <button>Toogle</button>
+    <button>Delete</button>
+    </div>
   )
 }

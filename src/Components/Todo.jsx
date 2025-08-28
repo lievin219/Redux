@@ -1,15 +1,23 @@
 import React from 'react'
 import { useReducer,useState } from 'react'
+import { Todoing   } from './Todoing'
  
-  const ACTIONS={ADDTODO:'add-todo'}
+  const ACTIONS={ADDTODO:'add-todo',TOOGLETODO:'toogle'}
    function reducer(state,action){
      if(action.type===ACTIONS.ADDTODO){
          return [...state,newtodos(action.payload.name)]
      }
+     else if (action.type===ACTIONS.TOOGLETODO){
+         return state.map(todo=>{
+           if(todo.id===action.payload.id){
+             return {...todo,completed: !todo.completed}
+           }}
+         )
+     }
      return state
    }
    function newtodos(name){
-    return {TimeCreated:Date.UTC(),name:name,completed:false}
+    return {id:Date.now(),name:name,completed:false}
 }
  
 
@@ -26,9 +34,9 @@ export const Todo = () => {
       console.log(todo)
   return (
  <form action="" onSubmit={handleSubmit}>
-    <input type="text" value={name} onChange={e=>setName(e.target.value)}/>
-    {todo.map(Todo=>
-        <Todoing key={Todo.TimeCreated} todo={Todo}/>
+    <input type="text" value={name} onChange={e=>setName(e.target.value)} className='bg-white text-black'/>
+    {todo.map(todo=>
+        <Todoing key={todo.id} todo={todo}/>
     )}
  </form>
   )

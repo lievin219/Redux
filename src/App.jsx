@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-    <div className='bg-white text-blue-600'>
+    <div>
    
        {/* <Profiling/>
        <Logging/>

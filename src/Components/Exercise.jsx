@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import { useReducer } from 'react'
+ const ACTIONS={INCREMENT:'increment',DECREMENT:'decrement'}
  function reducer(state,action){
-   if(action.type==='increment'){
+   if(action.type===ACTIONS.INCREMENT){
     return {count:state.count+1}
    }
-   else if (action.type==='decrement'){
+   else if (action.type===ACTIONS.DECREMENT){
     return {count:state.count-1}
    }
    return state

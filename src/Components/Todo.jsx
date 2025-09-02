@@ -2,7 +2,7 @@ import React from 'react'
 import { useReducer,useState } from 'react'
 import { Todoing   } from './Todoing'
  
-  const ACTIONS={ADDTODO:'add-todo',TOOGLETODO:'toogle'}
+  export  const ACTIONS={ADDTODO:'add-todo',TOOGLETODO:'toogle',DELETETODO:'delete'}
    function reducer(state,action){
      if(action.type===ACTIONS.ADDTODO){
          return [...state,newtodos(action.payload.name)]
@@ -17,6 +17,17 @@ import { Todoing   } from './Todoing'
    
          )
      }
+     else if (action.type===ACTIONS.DELETETODO){
+      return state.map(todo=>{
+        if(todo.id===action.payload.id){
+          return {...todo,completed: !todo.completed}
+        }
+     return todo
+   }
+
+      )
+  }
+
      return state
    }
    function newtodos(name){
@@ -39,7 +50,7 @@ export const Todo = () => {
  <form action="" onSubmit={handleSubmit}>
     <input type="text" value={name} onChange={e=>setName(e.target.value)} className='bg-white text-black'/>
     {todo.map(todo=>
-        <Todoing key={todo.id} todo={todo}/>
+        <Todoing key={todo.id} todo={todo} dispatch={dispatch}/>
     )}
  </form>
   )

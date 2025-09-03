@@ -24,6 +24,7 @@ export const Carting = () => {
                  item.id===action.payload?{item,quantity:item.quantity-1}:item
             )
           }
+           return state
      }
 
      const[cart,dispatch]=useReducer(createReducer,[])
@@ -34,14 +35,26 @@ export const Carting = () => {
           </h1>
           <div className='flex flex-col'>
          {Products.map(product=>(
-         <div className='flex flex-row gap-3'>
-            <p> {product.name}</p>
-            <p> {product.price}</p>
-           <button className='' onClick={dispatch({type:FUNCTIONALITIES.ADDTOCART,payload:Products})}>ADD</button>
+         <div className='flex flex-row gap-3' key={product.id}>
+            {product.name}-{product.price}
+           <button className='text-blue-600' onClick={dispatch({type:FUNCTIONALITIES.ADDTOCART,payload:product})}>ADD</button>
          </div>
      
   ))}
           </div>
+           <div>
+            {cart.length===0?(
+                <p>your cart is Empty</p>
+            ):
+            cart.map(item=>
+                <div key={item.id}>
+                    <span> {item.name}{item.price}</span>
+                    
+                    <button onClick={dispatch({type:FUNCTIONALITIES.DECRESETOCART,payload:item.id})}>Decrese</button>
+                    <button onClick={dispatch({type:FUNCTIONALITIES.INCREASETOCART,payload:item.id})}>increase</button>
+                </div>
+            )}
+           </div>
       </div>
     )}
 

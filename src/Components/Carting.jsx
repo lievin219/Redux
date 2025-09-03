@@ -53,7 +53,7 @@ export const Carting = () => {
 
   const [cart, dispatch] = useReducer(createReducer, []);
   const totalCart=cart.reduce((sum,item)=>sum+item.quantity,0)
-   const totalPrice=cart.reduce((sum,item)=>sum+item.quantity*item.price)
+   const totalPrice=cart.reduce((sum,item)=>sum+item.quantity*item.price,0 )
 
   return (
     <div>
@@ -80,13 +80,13 @@ export const Carting = () => {
       <div>
         {cart.length === 0 ? (
           <p>Your cart is Empty</p>
-        ) : (
+        ) :<h1>The cart items contains</h1> &&(
             
           cart.map((item) => (
             <div key={item.id}>
               
               <span>
-                <h1>Cart Items</h1>
+                
                 {item.name} - {item.price} x {item.quantity}
               </span>
               <button

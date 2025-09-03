@@ -26,7 +26,7 @@ export const Carting = () => {
               : item
           );
         }
-        // If not in cart, add with quantity 1
+      
         return [...state, { ...action.payload, quantity: 1 }];
       }
 
@@ -44,7 +44,7 @@ export const Carting = () => {
               ? { ...item, quantity: item.quantity - 1 }
               : item
           )
-          .filter((item) => item.quantity > 0); // remove if quantity is 0
+          .filter((item) => item.quantity > 0); 
 
       default:
         return state;
@@ -52,6 +52,8 @@ export const Carting = () => {
   }
 
   const [cart, dispatch] = useReducer(createReducer, []);
+  const totalCart=cart.reduce((sum,item)=>sum+item.quantity,0)
+   const totalPrice=cart.reduce((sum,item)=>sum+item.quantity*item.price)
 
   return (
     <div>
@@ -79,9 +81,12 @@ export const Carting = () => {
         {cart.length === 0 ? (
           <p>Your cart is Empty</p>
         ) : (
+            
           cart.map((item) => (
             <div key={item.id}>
+              
               <span>
+                <h1>Cart Items</h1>
                 {item.name} - {item.price} x {item.quantity}
               </span>
               <button
@@ -107,6 +112,8 @@ export const Carting = () => {
             </div>
           ))
         )}
+        <h2>{totalCart}</h2>
+        <h3>{totalPrice}</h3>
       </div>
     </div>
   );

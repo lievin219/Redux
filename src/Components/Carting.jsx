@@ -19,7 +19,11 @@ export const Carting = () => {
             item.id===item.payload?{...item,quantity:item.quantity+1}:item
            )
           }
-          else if(action.type)
+          else if(action.type===FUNCTIONALITIES.DECRESETOCART){
+            return state.map(item=>
+                 item.id===action.payload?{item,quantity:item.quantity-1}:item
+            )
+          }
      }
 
      const[cart,dispatch]=useReducer(createReducer,[])
